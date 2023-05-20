@@ -17,6 +17,7 @@ class TextFormFieldDecoration extends StatelessWidget {
   bool? isOutllineboarder;
 
 
+
   TextFormFieldDecoration({this.suffixIcon, this.prefixIcon, this.hintText,
       this.isPassword, this.isFilled, this.fillColor, this.outLineBoarder, this.iconPadding, this.contentPadding, this.prefixIconString, this.isOutllineboarder});
 

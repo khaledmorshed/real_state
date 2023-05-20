@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../conts/color_manager.dart';
+import '../global/global.dart';
+import '../widgets/custon_text_form_field.dart';
 import '../widgets/textformfield_decoration.dart';
 
 
@@ -14,15 +16,32 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
-  bool _obSecureValue = true;
-  bool _obSecureConfirmValue = true;
+  final _formKey = GlobalKey<FormState>();
 
-  bool _checkboxValue = true;
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    //print("dispose.................");
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+
+  Future<void> _formValidationAndSave() async {
+    final isValid = _formKey.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // ),
                       ),
                       onPressed: () {
-
+                        _formValidationAndSave();
                       },
                     ),
                     const SizedBox(height: 25,),
@@ -90,150 +109,126 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   _allTextField(){
     return Container(
-      child: Column(
-        children: [
-
-          TextFormField(
-            controller: _nameController,
-            decoration: TextFormFieldDecoration(prefixIcon: Icons.person, prefixIconString: "assets/vectors/sign up screen/person.png", iconPadding: 10.0, outLineBoarder: 2, hintText: "Enter ",).decoaration(),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Please enter a name";
-              }
-              return null;
-            },
-          ),
-
-          const SizedBox(height: 20,),
-
-          TextFormField(
-            controller: _emailController,
-            decoration: TextFormFieldDecoration(prefixIcon: Icons.email, prefixIconString: "assets/vectors/sign up screen/gmail_icon.png", iconPadding: 10.0, outLineBoarder: 2,fillColor: true, ).decoaration(),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Please enter an email";
-              }
-              return null;
-            },
-          ),
-
-          const SizedBox(height: 20,),
-
-          TextFormField(
-            controller: _phoneController,
-            decoration: TextFormFieldDecoration(prefixIcon: Icons.phone, prefixIconString: "assets/vectors/sign up screen/phone_icon.png", iconPadding: 10.0, outLineBoarder: 2,).decoaration(),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Please enter a phone number";
-              }
-              return null;
-            },
-          ),
-
-          const SizedBox(height: 20,),
-
-          TextFormField(
-            controller: _passwordController,
-            obscureText: _obSecureValue,
-            decoration: InputDecoration(
-              prefixIcon: SizedBox(
-                child: Image.asset("assets/vectors/sign up screen/lock_icon.png"),
-              ),
-              suffixIcon: SizedBox(
-                height: 4,
-                child: IconButton(
-                  onPressed: (){
-                    setState(() {
-                      _obSecureValue = !_obSecureValue;
-                    });
-                    // print("I am suffix............");
-                  },
-                  icon: Image.asset("assets/vectors/sign up screen/lock_suffix_icon.png"),
-                ),
-              ),
-              filled: true,
-              fillColor: Colors.white,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            CustomTextFormField(
+              controller: _nameController,
+              prefixIconString: "assets/vectors/sign up screen/person.png",
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter a name";
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Please enter a name";
-              }
-              return null;
-            },
-          ),
 
-          const SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
-          TextFormField(
-            controller: _confirmPasswordController,
-            obscureText: _obSecureConfirmValue,
-            decoration: InputDecoration(
-              prefixIcon: SizedBox(
-                child: Image.asset("assets/vectors/sign up screen/lock_icon.png"),
-              ),
-              suffixIcon: SizedBox(
-                height: 4,
-                child: IconButton(
-                  onPressed: (){
-                    setState(() {
-                      _obSecureConfirmValue = !_obSecureConfirmValue;
-                    });
-                    // print("I am suffix............");
-                  },
-                  icon: Image.asset("assets/vectors/sign up screen/lock_suffix_icon.png"),
-                ),
-              ),
-              filled: true,
-              fillColor: Colors.white,
+            CustomTextFormField(
+              controller: _emailController,
+              prefixIconString: "assets/vectors/sign up screen/gmail_icon.png",
+              textInputType: TextInputType.emailAddress,
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter an email";
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Please enter a name";
-              }
-              return null;
-            },
-          ),
 
-          const SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
-          Row(
-            children: [
-              Checkbox(
-                value: _checkboxValue,
-                onChanged: (va){
-                  setState(() {
-                    _checkboxValue = !_checkboxValue;
-                  });
-                },),
-              Expanded(
-                child: RichText(
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(text: 'I agree to the', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
-                      TextSpan(
-                          text: ' Privacy policy',
-                          style: TextStyle(color: Colors.black, fontSize: 14),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              print('Terms of Service......');
-                            }),
-                      TextSpan(text: ' and', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
-                      TextSpan(
-                          text: ' Terms & Conditions',
-                          style: TextStyle(color: Colors.black),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              print('Terms & Conditions........');
-                            }),
-                      TextSpan(text: ' of Real State', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
-                    ],
+            CustomTextFormField(
+              controller: _phoneController,
+              textInputType: TextInputType.phone,
+              prefixIconString: "assets/vectors/sign up screen/phone_icon.png",
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter a phone number";
+                }
+                return null;
+              },
+            ),
+
+            const SizedBox(height: 20,),
+
+            CustomTextFormField(
+              controller: _passwordController,
+              isPassword: true,
+              prefixIconString: "assets/vectors/sign up screen/lock_icon.png",
+              suffixIconString: "assets/vectors/sign up screen/lock_suffix_icon.png",
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter password";
+                }
+                if(value.toString().length < 6){
+                  return "password should be at least 6 characters";
+                }
+                return null;
+              },
+            ),
+
+            const SizedBox(height: 20,),
+
+            CustomTextFormField(
+              controller: _confirmPasswordController,
+              isPassword: true,
+              prefixIconString: "assets/vectors/sign up screen/lock_icon.png",
+              suffixIconString: "assets/vectors/sign up screen/lock_suffix_icon.png",
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter confirm password";
+                }
+                if(value.toString().length < 6){
+                  return "password should be at least 6 characters";
+                }
+                return null;
+              },
+            ),
+
+            const SizedBox(height: 20,),
+
+            Row(
+              children: [
+                Checkbox(
+                  value: checkboxValue,
+                  onChanged: (va){
+                    setState(() {
+                      checkboxValue = !checkboxValue;
+                    });
+                  },),
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(text: 'I agree to the', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
+                        TextSpan(
+                            text: ' Privacy policy',
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                print('Terms of Service......');
+                              }),
+                        TextSpan(text: ' and', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
+                        TextSpan(
+                            text: ' Terms & Conditions',
+                            style: TextStyle(color: Colors.black),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                print('Terms & Conditions........');
+                              }),
+                        TextSpan(text: ' of Real State', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
 
-        ],
+          ],
+        ),
       ),
     );
   }
