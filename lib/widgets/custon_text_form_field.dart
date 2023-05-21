@@ -30,7 +30,7 @@ class CustomTextFormField extends StatelessWidget {
   bool? isFilled;
   FontWeight? fontWeight;
 
-  CustomTextFormField({
+  CustomTextFormField({super.key,
     this.suffixIcon,
     this.prefixIcon,
     this.hintText,
@@ -69,7 +69,6 @@ class CustomTextFormField extends StatelessWidget {
         child: ValueListenableBuilder(
             valueListenable: obSecureValue,
             builder: (context, value, _) {
-              // print("ispass..........................$isPassword");
               return TextFormField(
                 readOnly: isReadOnly!,
                 onTap: onSubmit != null ? () => onChanged!() : null,
@@ -105,11 +104,9 @@ class CustomTextFormField extends StatelessWidget {
                             child: IconButton(
                               onPressed: () {
                                 if (controller!.text.isEmpty) return;
-                                //  print("ispass suffix button..........................$isPassword");
                                 obSecureValue.value = isPassword;
                                 isPassword = !isPassword;
                                 obSecureValue.value = isPassword;
-                                // print("suffixbutton pressed....................valuLisnter=${obSecureValue.value}.............+isPassword...$isPassword");
                               },
                               icon: Image.asset(suffixIconString!),
                             ),

@@ -113,6 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         key: _formKey,
         child: Column(
           children: [
+
             CustomTextFormField(
               controller: _nameController,
               prefixIconString: "assets/vectors/sign up screen/person.png",
@@ -247,16 +248,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
    _gmailAndFb(){
-    return Container(
-
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/vectors/sign up screen/gmail.png", height: 50, width: 50,),
-          const SizedBox(height: 25,),
-          Image.asset("assets/vectors/sign up screen/fb.png", height: 50, width: 50,),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset("assets/vectors/sign up screen/gmail.png", height: 50, width: 50,),
+        const SizedBox(height: 25,),
+        Image.asset("assets/vectors/sign up screen/fb.png", height: 50, width: 50,),
+      ],
     );
   }
 }

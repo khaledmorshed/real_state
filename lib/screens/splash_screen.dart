@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:real_state/screens/update_password_screen.dart';
 import '../conts/color_manager.dart';
+import 'otp_screen.dart';
 import 'sign_up_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,8 +16,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   startTimer() {
     Timer(const Duration(seconds: 1), () async {
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => SignUpScreen()));
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+          context, MaterialPageRoute(builder: (context) => UpdatePasswordScreen()));
     });
   }
 
