@@ -141,6 +141,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 20,),
 
             CustomTextFormField(
+              controller: _emailController,
+              prefixIconString: "assets/vectors/sign up screen/gmail_icon.png",
+              textInputType: TextInputType.emailAddress,
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter an email";
+                }
+                return null;
+              },
+            ),
+
+            const SizedBox(height: 20,),
+
+            CustomTextFormField(
               controller: _phoneController,
               textInputType: TextInputType.phone,
               prefixIconString: "assets/vectors/sign up screen/phone_icon.png",
