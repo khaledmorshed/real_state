@@ -47,7 +47,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       //_formValidationAndSave();
                     },
                   ),
-                  Text("time"),
+                  Text(""),
                 ],
               ),
             ],
@@ -62,11 +62,11 @@ class _OtpScreenState extends State<OtpScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height:  68,
-            width:  64,
+            height:  60,
+            width:  60,
             decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(12)
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15)
             ),
             child: Center(
               child: TextFormField(
@@ -75,7 +75,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     FocusScope.of(context).nextFocus();
                   }
                 },
-                style: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500,),
+                style: const TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w500,),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -89,12 +89,12 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
           ),
           Container(
-            height:  68,
-            width:  64,
+            height:  60,
+            width:  60,
 
             decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(12)
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15)
             ),
             child: Center(
               child: TextFormField(
@@ -103,7 +103,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     FocusScope.of(context).nextFocus();
                   }
                 },
-                style: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500,),
+                style: const TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w500,),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -117,12 +117,12 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
           ),
           Container(
-            height:  68,
-            width:  64,
+            height:  60,
+            width:  60,
 
             decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(12)
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15)
             ),
             child: Center(
               child: TextFormField(
@@ -131,7 +131,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     FocusScope.of(context).nextFocus();
                   }
                 },
-                style: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500,),
+                style: const TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w500,),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -145,12 +145,12 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
           ),
           Container(
-            height:  68,
-            width:  64,
+            height:  60,
+            width:  60,
 
             decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(12)
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15)
             ),
             child: Center(
               child: TextFormField(
@@ -159,8 +159,8 @@ class _OtpScreenState extends State<OtpScreen> {
                     FocusScope.of(context).nextFocus();
                   }
                 },
-                //style: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500,),
-                style: Theme.of(context).textTheme.headline6,
+                style: const TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w500,),
+                //style: Theme.of(context).textTheme.headline6,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                 ),
