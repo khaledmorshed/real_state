@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:real_state/providers/registration_provider.dart';
+import 'package:real_state/screens/home_screen.dart';
+import 'package:real_state/screens/reset_password_screen.dart';
+import 'package:real_state/screens/sign_in_screen.dart';
+import 'package:real_state/screens/sign_up_screen.dart';
 import 'package:real_state/screens/splash_screen.dart';
+import 'package:real_state/screens/update_password_screen.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+        providers:[
+          ChangeNotifierProvider(create: (context) => RegistrationProvider()),
+        ],
+        child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,6 +33,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SplashScreen(),
+      routes: {
+        HomeScreen.route: (context)=> HomeScreen(),
+        SplashScreen.route: (context)=> SplashScreen(),
+        SignUpScreen.route: (context)=> SignUpScreen(),
+        SignInScreen.route: (context)=>SignInScreen(),
+        ResetPasswordScreen.route: (context)=> ResetPasswordScreen(),
+        UpdatePasswordScreen.route: (context)=> UpdatePasswordScreen(),
+      },
     );
   }
 }

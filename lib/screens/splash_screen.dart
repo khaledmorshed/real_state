@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:real_state/screens/reset_password_screen.dart';
+import 'package:real_state/screens/sign_in_screen.dart';
 import 'package:real_state/screens/update_password_screen.dart';
 import '../conts/color_manager.dart';
 import 'otp_screen.dart';
 import 'sign_up_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String route = "/SplashScreen";
+
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,11 +19,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
 
   startTimer() {
-    Timer(const Duration(seconds: 1), () async {
-      // Navigator.pushReplacement(
-      //     context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+    Timer(const Duration(seconds: 2), () async {
+
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => UpdatePasswordScreen()));
+          context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => SignInScreen()));
+
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => OtpScreen()));
+
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => UpdatePasswordScreen()));
+
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => ResetPasswordScreen()));
+
     });
   }
 
@@ -55,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: EdgeInsets.only(bottom: 8),
-                child: Image.asset("assets/vectors/splash screen/home indicator.png"),
+                child: Image.asset("assets/vectors/splash screen/home indicator.png", color: Colors.black,),
               ),
             ),
           ),

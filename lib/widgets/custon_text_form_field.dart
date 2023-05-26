@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:real_state/conts/color_manager.dart';
 
 import '../global/global.dart';
 
@@ -9,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   IconData? icon;
   bool isPassword;
   Color? hintColor;
+  double? hintTextSize;
   Color? textColor;
   TextInputType? textInputType;
   Function? onChanged;
@@ -30,7 +32,8 @@ class CustomTextFormField extends StatelessWidget {
   bool? isFilled;
   FontWeight? fontWeight;
 
-  CustomTextFormField({super.key,
+  CustomTextFormField({
+    super.key,
     this.suffixIcon,
     this.prefixIcon,
     this.hintText,
@@ -57,6 +60,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIconString,
     this.isFilled = true,
     this.fontWeight = FontWeight.w400,
+    this.hintTextSize = 14,
   });
 
   @override
@@ -79,18 +83,25 @@ class CustomTextFormField extends StatelessWidget {
                 obscureText: isPassword,
                 keyboardType: textInputType,
                 textAlignVertical: TextAlignVertical.center,
-                onChanged: onChanged != null ? (String txt) => onChanged!(txt) : null,
+                onChanged:
+                    onChanged != null ? (String txt) => onChanged!(txt) : null,
                 style: TextStyle(
                   color: textColor,
                   fontSize: fontSize,
                   fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
+                  //border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
                   border: isOutLineboarder == null
                       ? null
                       : OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(outLineBoarder!)),
+                            Radius.circular(outLineBoarder!),
+                          ),
+                          borderSide: BorderSide.none,
+
                         ),
                   //contentPadding: contentPadding == null ? null : EdgeInsets.symmetric(horizontal: contentPadding!, vertical: contentPadding!),
                   suffixIcon: suffixIconString == null
@@ -119,6 +130,7 @@ class CustomTextFormField extends StatelessWidget {
                           child: Image.asset(prefixIconString!),
                         ),
                   hintText: hintText == null ? null : hintText!,
+                  hintStyle: TextStyle(fontSize: hintTextSize, color: hintColor),
                   filled: isFilled,
                   fillColor: fillColor,
                 ),
