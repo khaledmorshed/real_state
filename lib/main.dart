@@ -8,12 +8,15 @@ import 'package:real_state/screens/sign_up_screen.dart';
 import 'package:real_state/screens/splash_screen.dart';
 import 'package:real_state/screens/update_password_screen.dart';
 
+import 'providers/sign_in_provider.dart';
+
 
 void main() {
   runApp(
     MultiProvider(
         providers:[
           ChangeNotifierProvider(create: (context) => RegistrationProvider()),
+          ChangeNotifierProvider(create: (context) => SignInProvider()),
         ],
         child: const MyApp(),
     ),

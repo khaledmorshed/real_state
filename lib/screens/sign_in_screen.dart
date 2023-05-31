@@ -1,8 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:real_state/providers/sign_in_provider.dart';
+import 'package:real_state/screens/home_screen.dart';
 
 import '../conts/color_manager.dart';
 import '../global/global.dart';
+import '../models/user_model.dart';
 import '../widgets/custon_text_form_field.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -16,20 +20,16 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _checkboxValue = true;
-  final _nameController = TextEditingController();
+
   final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+
 
   @override
   void dispose() {
     //print("dispose.................");
-    _nameController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -39,6 +39,20 @@ class _SignInScreenState extends State<SignInScreen> {
     if (!isValid) {
       return;
     }
+    _registration();
+  }
+
+  Future<void> _registration()async{
+    final _user = User(
+
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+    Provider.of<SignInProvider>(context, listen: false).signIn(_user).then((value){
+
+      print("sign in..............");
+      Navigator.pushReplacementNamed(context, HomeScreen.route);
+    });
   }
 
   @override

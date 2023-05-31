@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:real_state/providers/registration_provider.dart';
+import 'package:real_state/screens/home_screen.dart';
+import 'package:real_state/screens/sign_in_screen.dart';
 
 import '../conts/color_manager.dart';
 import '../global/global.dart';
@@ -58,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Provider.of<RegistrationProvider>(context, listen: false).registration(_user).then((value){
 
       print("sign up..............");
+      Navigator.pushReplacementNamed(context, SignInScreen.route);
     });
   }
 

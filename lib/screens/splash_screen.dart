@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:real_state/global/global.dart';
+import 'package:real_state/screens/home_screen.dart';
 import 'package:real_state/screens/reset_password_screen.dart';
 import 'package:real_state/screens/sign_in_screen.dart';
 import 'package:real_state/screens/update_password_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../conts/color_manager.dart';
 import 'otp_screen.dart';
 import 'sign_up_screen.dart';
@@ -18,14 +21,22 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  String? _access;
+
   startTimer() {
     Timer(const Duration(seconds: 2), () async {
 
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => SignUpScreen()));
-
       // Navigator.pushReplacement(
-      //     context, MaterialPageRoute(builder: (context) => SignInScreen()));
+      //     context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+
+      if(_access != null){
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      }
+      else{
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => SignInScreen()));
+      }
 
       // Navigator.pushReplacement(
       //     context, MaterialPageRoute(builder: (context) => OtpScreen()));
@@ -39,11 +50,26 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   startTimer();
+  // }
+
+  loadShPref()async{
+    sPref = await SharedPreferences.getInstance();
+    _access = sPref!.getString("access");
+    print("splass...............token=$_access");
+
+  }
+
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  void didChangeDependencies() async{
+    // TODO: implement didChangeDependencies
+    await loadShPref();
     startTimer();
+    super.didChangeDependencies();
   }
 
   @override

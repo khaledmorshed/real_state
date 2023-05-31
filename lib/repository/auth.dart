@@ -44,4 +44,31 @@ class Auth{
        // throw Exception(response.data);
       }
   }
+  //sign in
+  static Future signIn(User? user)async{
+    try{
+      var dio = Dio();
+      dio.options.headers['Content-Type'] = 'application/json';
+      print("test1..........");
+
+      print("user.....+${user!.email}+${user.password}");
+      var data = json.encode({
+        "email": user.email,
+        "password": user.password,
+      });
+      print("test2..........");
+
+      Response response = await dio.post(
+        Api.baseUrl + Api.login,
+        data: data,
+      );
+
+      if(response.statusCode == 200){
+        return User.fromJson(response.data);
+       // return response.statusCode;
+      }
+    }catch(error){
+      throw Exception("Failed to login");
+    }
+  }
 }
