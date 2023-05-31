@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:real_state/conts/color_manager.dart';
-
+import '../../utills/conts/color_manager.dart';
 import '../widgets/custon_text_form_field.dart';
+
 
 class UpdatePasswordScreen extends StatefulWidget {
   static const String route = "/UpdatePasswordScreen";

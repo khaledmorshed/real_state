@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../global/sdp.dart';
+
+import '../../utills/sdp.dart';
+
 const String yugothib = "Yugothib";
 enum FF { Yugothib }
 

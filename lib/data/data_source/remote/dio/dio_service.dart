@@ -1,12 +1,9 @@
-
-
 import 'dart:io';
-
-
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'logging_interceptor.dart';
 
-class DioClient{
+class DioService{
   final String baseUrl;
   final LoggingInterceptor loggingInterceptor;
   final SharedPreferences sharedPreferences;
@@ -16,21 +13,20 @@ class DioClient{
   String? countryCode;
 
 
-  DioClient(this.baseUrl,Dio? dioC,{required this.loggingInterceptor,required this.sharedPreferences,}){
+  DioService(this.baseUrl,Dio? dioC,{required this.loggingInterceptor,required this.sharedPreferences,}){
 
     dio = dioC ?? Dio();
     dio!
       ..options.baseUrl = baseUrl
-      ..options.connectTimeout = 30000 ms
-      ..options.receiveTimeout = 30000 ms
+      ..options.connectTimeout = Duration(microseconds: 30000)
+      ..options.receiveTimeout = Duration(microseconds: 30000)
       ..httpClientAdapter
       ..options.headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
+        //'Authorization': 'Bearer $token',
         //AppConstants.LANG_KEY : countryCode == 'US'? 'en':countryCode.toLowerCase(),
       };
     dio!.interceptors.add(loggingInterceptor);
-
   }
 
   void updateHeader(String token, String countryCode) {

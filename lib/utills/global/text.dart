@@ -1,4 +1,4 @@
-import '../widgets/common_text.dart';
+import '../../view/widgets/common_text.dart';
 
 t26(String title) => CommonText(
   title,

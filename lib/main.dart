@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state/providers/registration_provider.dart';
-import 'package:real_state/screens/home_screen.dart';
-import 'package:real_state/screens/reset_password_screen.dart';
-import 'package:real_state/screens/sign_in_screen.dart';
-import 'package:real_state/screens/sign_up_screen.dart';
-import 'package:real_state/screens/splash_screen.dart';
-import 'package:real_state/screens/update_password_screen.dart';
+import 'package:real_state/providers/sign_up_provider.dart';
+import 'package:real_state/view/screens/home_screen.dart';
+import 'package:real_state/view/screens/reset_password_screen.dart';
+import 'package:real_state/view/screens/sign_in_screen.dart';
+import 'package:real_state/view/screens/sign_up_screen.dart';
+import 'package:real_state/view/screens/splash_screen.dart';
+import 'package:real_state/view/screens/update_password_screen.dart';
+import 'injection_container.dart' as injection;
+import 'providers/sign_in_provider.dart';
 
 
-void main() {
+
+void main() async{
+  await injection.init();
   runApp(
     MultiProvider(
         providers:[
-          ChangeNotifierProvider(create: (context) => RegistrationProvider()),
+          ChangeNotifierProvider(create: (context) => injection.sl<SignUpProvider>()),
+          ChangeNotifierProvider(create: (context) => injection.sl<SignInProvider>()),
         ],
         child: const MyApp(),
     ),

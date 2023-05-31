@@ -1,8 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../conts/color_manager.dart';
+import '../../utills/conts/color_manager.dart';
 
 class OtpScreen extends StatefulWidget {
   static const String route = "/OtpScreen";
