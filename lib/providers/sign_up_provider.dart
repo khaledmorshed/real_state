@@ -16,7 +16,20 @@ class SignUpProvider with ChangeNotifier{
   final AuthRepo auth;
 
 
-  SignUpProvider({required this.dioService, required this.auth});
+  SignUpProvider({required this.dioService, required this.auth}) {
+   if (dioService == null) {
+     print("dio not found");
+   }
+   else{
+     print("dio dioService found");
+   }
+   if (auth == null) {
+     print("dio not found");
+   }
+   else{
+     print("dio auth found");
+   }
+  }
 
   User? _user;
   User? get user => _user;
@@ -29,7 +42,7 @@ class SignUpProvider with ChangeNotifier{
     _isLoading = true;
    // notifyListeners();
 
-    print("provider........registration");
+    print("provider........sing up");
     ApiResponseModel apiResponseModel = await auth.signUp(user);
 
       // try{
@@ -67,6 +80,8 @@ class SignUpProvider with ChangeNotifier{
 
       }catch(e){
 
+        print("provider e............");
+
         //throw e;
       }
 
@@ -76,46 +91,48 @@ class SignUpProvider with ChangeNotifier{
       notifyListeners();
     }
 
-    else{
-      _isLoading = false;
-      notifyListeners();
-      if(apiResponseModel.response != null && apiResponseModel.response!.statusCode==200){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(apiResponseModel.response!.data["message"]),
-          elevation: 6.0,
-          duration: const Duration(seconds: 2),
-          backgroundColor: Colors.red,
-        ));
-      }
-
-      String errorMessage;
-      if(apiResponseModel.error is String){
-        if(kDebugMode){
-          print(apiResponseModel.error.toString());
-        }
-        errorMessage = apiResponseModel.error.toString();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('${errorMessage}'),
-          backgroundColor: Colors.red,
-        ));
-      }
-      else{
-        ErrorResponse errorResponse = apiResponseModel.error;
-        if(kDebugMode){
-          print(errorResponse.error![0].message);
-        }
-        errorMessage = errorResponse.error![0].message;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(errorMessage),
-          backgroundColor: Colors.red,
-        ));
-      }
-      notifyListeners();
-    }
+    // else{
+    //   print("provider else............");
+    //
+    //   _isLoading = false;
+    //   notifyListeners();
+    //   if(apiResponseModel.response != null && apiResponseModel.response!.statusCode==200){
+    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //       content: Text(apiResponseModel.response!.data["message"]),
+    //       elevation: 6.0,
+    //       duration: const Duration(seconds: 2),
+    //       backgroundColor: Colors.red,
+    //     ));
+    //   }
+    //
+    //   String errorMessage;
+    //   if(apiResponseModel.error is String){
+    //     if(kDebugMode){
+    //       print(apiResponseModel.error.toString());
+    //     }
+    //     errorMessage = apiResponseModel.error.toString();
+    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //       content: Text('${errorMessage}'),
+    //       backgroundColor: Colors.red,
+    //     ));
+    //   }
+    //   else{
+    //     ErrorResponse errorResponse = apiResponseModel.error;
+    //     if(kDebugMode){
+    //       print(errorResponse.error![0].message);
+    //     }
+    //     errorMessage = errorResponse.error![0].message;
+    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //       content: Text(errorMessage),
+    //       backgroundColor: Colors.red,
+    //     ));
+    //   }
+    //  // notifyListeners();
+    // }
     if (kDebugMode) {
       print("response.statusCode${apiResponseModel.response!.statusCode}");
     }
-
+    print("provider return............");
     return apiResponseModel.response!.data["status"];
   }
 }

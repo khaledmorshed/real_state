@@ -58,21 +58,30 @@ class AuthRepo{
   /// For Login
   Future<ApiResponseModel> signUp(User? user) async{
     try{
+      print("start+auth_repo........singUp");
       var data = json.encode({
         "username": user!.userName,
         "email": user.email,
         "password": user.password,
       });
+      print("auth_repo........test1");
       Response response = await dioService.post(
           Api.baseUrl+Api.registration,
           data: data,
           // queryParameters: {
-          //   'agent_mobile_number': number,
-          //   'password' : password,
+          //   // 'agent_mobile_number': number,
+          //   // 'password' : password,
+          //
+          //   "username": user.userName,
+          //   "email": user.email,
+          //   "password": user.password,
           // }
       );
+      print("auth_repo try............");
+      print("auth_repo response............${response.toString()}");
       return ApiResponseModel.withSuccess(response);
     }catch(e){
+      print("auth_repo catch............");
       return ApiResponseModel.withError(ApiErrorHandler.getMessage(e));
     }
   }

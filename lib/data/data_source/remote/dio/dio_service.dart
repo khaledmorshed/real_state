@@ -14,8 +14,9 @@ class DioService{
 
 
   DioService(this.baseUrl,Dio? dioC,{required this.loggingInterceptor,required this.sharedPreferences,}){
-
-    dio = dioC ?? Dio();
+    //dio.options.headers['Content-Type'] = 'application/json';
+    //dio = dioC ?? Dio();
+    print("der_service constructor..................${dio}");
     dio!
       ..options.baseUrl = baseUrl
       ..options.connectTimeout = Duration(microseconds: 30000)
@@ -26,6 +27,7 @@ class DioService{
         //'Authorization': 'Bearer $token',
         //AppConstants.LANG_KEY : countryCode == 'US'? 'en':countryCode.toLowerCase(),
       };
+    //..options.headers['Content-Type'] = 'application/json';
     dio!.interceptors.add(loggingInterceptor);
   }
 
@@ -77,7 +79,11 @@ class DioService{
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
+    dio =  Dio();
+    print("dio_service.......${dio}");
     try {
+      print("dio_service uri..........$uri");
+      print("dio_service queryParameters..........${queryParameters.toString()}");
       var response = await dio!.post(
         uri,
         data: data,
@@ -87,10 +93,15 @@ class DioService{
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
+      print("dio_service response.........}");
+      print("dio_service response.........${response.data.toString()}");
       return response;
     } on FormatException catch (_) {
+      print("dio_service FormatException.........");
       throw FormatException("Unable to process the data");
     } catch (e) {
+      print("dio_service e.........");
+
       throw e;
     }
   }

@@ -13,6 +13,7 @@ import 'providers/sign_in_provider.dart';
 
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   await injection.init();
   runApp(
     MultiProvider(
