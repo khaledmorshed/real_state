@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:real_state/utills/global/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utills/conts/color_manager.dart';
-import 'sign_up_screen.dart';
+import 'auth_screens/sign_up_screen.dart';
+import 'home_screen.dart';
+
 
 class SplashScreen extends StatefulWidget {
   static const String route = "/SplashScreen";
@@ -22,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () async {
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
 
       // if(_access != null){
       //   Navigator.pushReplacement(

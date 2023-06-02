@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../utills/conts/color_manager.dart';
-import '../widgets/custon_text_form_field.dart';
+import '../../../utills/conts/color_manager.dart';
+import '../../widgets/custon_text_form_field.dart';
 
 
 class ResetPasswordScreen extends StatefulWidget {

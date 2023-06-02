@@ -11,6 +11,14 @@ class ColorManager {
   static Color hintTextColor = HexColor.fromHex("#A6A6A6");
   static Color buttonColor = HexColor.fromHex("#1F53B9");
 
+  //for home screen
+  static Color homeBg = HexColor.fromHex("#F4F7FD");
+  static Color homeWe = HexColor.fromHex("#585858");
+
+
+  static Color selectButtonColor = HexColor.fromHex("#1F53B9");
+
+
 
   static Color white1 = HexColor.fromHex("#FFFFFF");
   static Color lightPink2 = Color.fromARGB(255, 255, 255, 1);

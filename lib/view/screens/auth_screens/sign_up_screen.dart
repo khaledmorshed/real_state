@@ -1,34 +1,40 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state/providers/sign_in_provider.dart';
-import '../../data/models/user_model.dart';
-import '../../utills/conts/color_manager.dart';
-import '../widgets/custon_text_form_field.dart';
-import 'home_screen.dart';
+import 'package:real_state/providers/sign_up_provider.dart';
+import 'package:real_state/view/screens/auth_screens/sign_in_screen.dart';
+import '../../../data/models/user_model.dart';
+import '../../../utills/conts/color_manager.dart';
+import '../../../utills/global/text.dart';
+import '../../widgets/custon_text_form_field.dart';
 
 
-class SignInScreen extends StatefulWidget {
-  static const String route = "/SignInScreen";
+class SignUpScreen extends StatefulWidget {
+  static const String route = "/SignUpScreen";
+  const SignUpScreen({Key? key}) : super(key: key);
 
-  const SignInScreen({Key? key}) : super(key: key);
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+
   final _formKey = GlobalKey<FormState>();
   bool _checkboxValue = true;
-
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
-
+  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     //print("dispose.................");
+    _nameController.dispose();
     _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -43,14 +49,14 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Future<void> _registration()async{
     final _user = User(
-
+      userName: _nameController.text.trim(),
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
-    Provider.of<SignInProvider>(context, listen: false).signIn(_user).then((value){
+    Provider.of<SignUpProvider>(context, listen: false).signUp(user: _user, context: context).then((value){
 
-      print("sign in..............");
-      Navigator.pushReplacementNamed(context, HomeScreen.route);
+      print("sign up..............");
+      Navigator.pushReplacementNamed(context, SignInScreen.route);
     });
   }
 
@@ -71,9 +77,11 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Container(
                 child: Column(
                   children: [
-                    const Text("Sign In", style: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal, fontSize: 24, fontWeight: FontWeight.w500),),
+                   //const Text("Sign Up", style: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal, fontSize: 24, fontWeight: FontWeight.w500),),
+                    txt10("Sign Up",),
                     const SizedBox(height: 5,),
-                    Text("Hey, good to see you again", style: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal, fontSize: 14, color: ColorManager.signUpHey),),
+                    //Text("Hey, good to see you again", style: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal, fontSize: 30, color: ColorManager.signUpHey),),
+                    Text("Sign Up", style: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal, fontSize: 30, color: ColorManager.signUpHey),),
                     const SizedBox(height: 30,),
                     _allTextField(),
                     const SizedBox(height: 30,),
@@ -96,11 +104,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Or Sign In with',
+                              text: 'Or Sign up with',
                               style: const TextStyle(color: Colors.black, fontSize: 14),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  print('sing in......');
+                                  print('Terms of Service......');
                                 }),
                         ],
                       ),
@@ -111,15 +119,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     RichText(
                       text: TextSpan(children: [
                         TextSpan(
-                          text: "Don't have an account?",
+                          text: "Already have an account?",
                           style: TextStyle(
                               color: ColorManager.updatePlease, fontSize: 14),
                         ),
                         TextSpan(
-                          text: " Sign Up",
+                          text: " Sign In",
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              print('Sign In.....');
+                              print('Sign up.....');
                             },
                           style: TextStyle(
                               color: ColorManager.otpResend,
@@ -147,6 +155,22 @@ class _SignInScreenState extends State<SignInScreen> {
         key: _formKey,
         child: Column(
           children: [
+
+            CustomTextFormField(
+              controller: _nameController,
+              hintText: "Enter Your Name",
+              hintColor: ColorManager.hintTextColor,
+              prefixIconString: "assets/vectors/sign up screen/person.png",
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter a name";
+                }
+                return null;
+              },
+            ),
+
+            const SizedBox(height: 20,),
+
             CustomTextFormField(
               controller: _emailController,
               hintText: "Enter Your Email",
@@ -160,7 +184,25 @@ class _SignInScreenState extends State<SignInScreen> {
                 return null;
               },
             ),
+
+            // const SizedBox(height: 20,),
+            //
+            // CustomTextFormField(
+            //   controller: _phoneController,
+            //   hintText: "Enter Phone Number",
+            //   hintColor: ColorManager.hintTextColor,
+            //   textInputType: TextInputType.phone,
+            //   prefixIconString: "assets/vectors/sign up screen/phone_icon.png",
+            //   validation: (value) {
+            //     if (value!.isEmpty) {
+            //       return "Please enter a phone number";
+            //     }
+            //     return null;
+            //   },
+            // ),
+
             const SizedBox(height: 20,),
+
             CustomTextFormField(
               controller: _passwordController,
               hintText: "Enter Your Password",
@@ -181,34 +223,58 @@ class _SignInScreenState extends State<SignInScreen> {
 
             const SizedBox(height: 20,),
 
+            CustomTextFormField(
+              controller: _confirmPasswordController,
+              hintText: "Confirm Password",
+              hintColor: ColorManager.hintTextColor,
+              isPassword: true,
+              prefixIconString: "assets/vectors/sign up screen/lock_icon.png",
+              suffixIconString: "assets/vectors/sign up screen/lock_suffix_icon.png",
+              validation: (value) {
+                if (value!.isEmpty) {
+                  return "Please enter confirm password";
+                }
+                if(value.toString().length < 6){
+                  return "password should be at least 6 characters";
+                }
+                return null;
+              },
+            ),
+
+            const SizedBox(height: 20,),
 
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _checkboxValue,
-                      onChanged: (va){
-                        setState(() {
-                          _checkboxValue = !_checkboxValue;
-                        });
-                      },),
-                    const SizedBox(width: 10,),
-                    const Text('Remember me', style: TextStyle(fontSize: 14)),
-                  ],
-                ),
-                RichText(
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Forget Password',
-                          style: const TextStyle(color: Colors.black, fontSize: 14),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              print('forget......');
-                            }),
-                    ],
+                Checkbox(
+                  value: _checkboxValue,
+                  onChanged: (va){
+                    setState(() {
+                      _checkboxValue = !_checkboxValue;
+                    });
+                  },),
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(text: 'I agree to the', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
+                        TextSpan(
+                            text: ' Privacy policy',
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                print('Terms of Service......');
+                              }),
+                        TextSpan(text: ' and', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
+                        TextSpan(
+                            text: ' Terms & Conditions',
+                            style: TextStyle(color: Colors.black),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                print('Terms & Conditions........');
+                              }),
+                        TextSpan(text: ' of Real State', style: TextStyle(color: ColorManager.signAgree, fontSize: 14)),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -219,7 +285,7 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-  _gmailAndFb(){
+   _gmailAndFb(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

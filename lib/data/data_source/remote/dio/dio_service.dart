@@ -16,6 +16,7 @@ class DioService{
   DioService(this.baseUrl,Dio? dioC,{required this.loggingInterceptor,required this.sharedPreferences,}){
     //dio.options.headers['Content-Type'] = 'application/json';
     //dio = dioC ?? Dio();
+    dio =  Dio();
     print("der_service constructor..................${dio}");
     dio!
       ..options.baseUrl = baseUrl
@@ -83,7 +84,7 @@ class DioService{
     print("dio_service.......${dio}");
     try {
       print("dio_service uri..........$uri");
-      print("dio_service queryParameters..........${queryParameters.toString()}");
+      print("dio_service data..........${data.toString()}");
       var response = await dio!.post(
         uri,
         data: data,

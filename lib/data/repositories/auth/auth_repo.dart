@@ -55,7 +55,7 @@ class AuthRepo{
   // }
 
 
-  /// For Login
+  /// For sign up
   Future<ApiResponseModel> signUp(User? user) async{
     try{
       print("start+auth_repo........singUp");
@@ -86,32 +86,62 @@ class AuthRepo{
     }
   }
 
-
   //sign in
-  static Future signIn(User? user)async{
+  Future<ApiResponseModel> signIn(User? user) async{
     try{
-      var dio = Dio();
-      dio.options.headers['Content-Type'] = 'application/json';
-      print("test1..........");
-
-      print("user.....+${user!.email}+${user.password}");
+      print("start+auth_repo........singUp");
       var data = json.encode({
-        "email": user.email,
+        "email": user!.email,
         "password": user.password,
       });
-      print("test2..........");
-
-      Response response = await dio.post(
-        Api.baseUrl + Api.login,
+      print("auth_repo........test1");
+      Response response = await dioService.post(
+        Api.baseUrl+Api.login,
         data: data,
+        // queryParameters: {
+        //   // 'agent_mobile_number': number,
+        //   // 'password' : password,
+        //
+        //   "username": user.userName,
+        //   "email": user.email,
+        //   "password": user.password,
+        // }
       );
-
-      if(response.statusCode == 200){
-        return User.fromJson(response.data);
-       // return response.statusCode;
-      }
-    }catch(error){
-      throw Exception("Failed to login");
+      print("auth_repo try............");
+      print("auth_repo response............${response.toString()}");
+      return ApiResponseModel.withSuccess(response);
+    }catch(e){
+      print("auth_repo catch............");
+      return ApiResponseModel.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+
+  //sign in
+  // static Future signIn(User? user)async{
+  //   try{
+  //     var dio = Dio();
+  //     dio.options.headers['Content-Type'] = 'application/json';
+  //     print("test1..........");
+  //
+  //     print("user.....+${user!.email}+${user.password}");
+  //     var data = json.encode({
+  //       "email": user.email,
+  //       "password": user.password,
+  //     });
+  //     print("test2..........");
+  //
+  //     Response response = await dio.post(
+  //       Api.baseUrl + Api.login,
+  //       data: data,
+  //     );
+  //
+  //     if(response.statusCode == 200){
+  //       return User.fromJson(response.data);
+  //      // return response.statusCode;
+  //     }
+  //   }catch(error){
+  //     throw Exception("Failed to login");
+  //   }
+  // }
 }

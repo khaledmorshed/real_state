@@ -2,42 +2,50 @@ import 'package:flutter/material.dart';
 
 import '../../utills/sdp.dart';
 
-const String yugothib = "Yugothib";
-enum FF { Yugothib }
+//const String yugothib = "Yugothib";
+const String poppins = "Poppins";
+//enum FF { Yugothib }
+enum FontFamily { Poppins }
 
 class CommonText extends StatelessWidget {
   final String title;
-  final FontWeight fWeight;
+  final FontWeight fontWeight;
+  final FontStyle fontStyle;
   final double size;
   final TextAlign textAlignment;
   final TextOverflow textOverflow;
-  final Color color;
-  final FF fF;
+  final Color textColor;
+  final FontFamily fontFamily;
+
 
   const CommonText(
       this.title, {
         Key? key,
-        this.fWeight = FontWeight.normal,
+        this.fontWeight = FontWeight.normal,
         this.size = 14,
         this.textAlignment = TextAlign.start,
         this.textOverflow = TextOverflow.visible,
-        this.color = Colors.black,
-        this.fF = FF.Yugothib,
+        this.textColor = Colors.black,
+        this.fontFamily = FontFamily.Poppins,
+        this.fontStyle = FontStyle.normal
       }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SDP.init(context);
     // TextStyle tStyle = Theme.of(context).textTheme.headline1!;
-    return Text(
-      title,
-      textAlign: textAlignment,
-      overflow: textOverflow,
-      style: TextStyle(
-          fontSize: SDP.sdp(size),
-          color: color,
-          fontWeight: fWeight == FontWeight.bold ? FontWeight.w900 : fWeight,
-          fontFamily: yugothib),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        title,
+        textAlign: textAlignment,
+        overflow: textOverflow,
+        style: TextStyle(
+            fontSize: SDP.sdp(size),
+            color: textColor,
+            fontWeight: fontWeight == FontWeight.bold ? FontWeight.w900 : fontWeight,
+            fontFamily: poppins),
+      ),
     );
   }
 }

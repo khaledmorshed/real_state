@@ -17,6 +17,7 @@ class SignUpProvider with ChangeNotifier{
 
 
   SignUpProvider({required this.dioService, required this.auth}) {
+
    if (dioService == null) {
      print("dio not found");
    }
@@ -29,6 +30,8 @@ class SignUpProvider with ChangeNotifier{
    else{
      print("dio auth found");
    }
+
+   print("sing_up_constructor .....${dioService.dio}");
   }
 
   User? _user;

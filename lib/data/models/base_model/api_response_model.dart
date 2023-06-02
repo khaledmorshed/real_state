@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
 class ApiResponseModel {
-  final Response? response;
-  final dynamic error;
+   Response? response;
+   dynamic error;
 
   ApiResponseModel(this.response, this.error);
 
@@ -13,4 +13,11 @@ class ApiResponseModel {
   ApiResponseModel.withSuccess(Response responseValue)
       : response = responseValue,
         error = null;
+
+  //equivalent the above code
+  // ApiResponseModel.withSuccess(Response responseValue){
+  //   response = responseValue;
+  //   error = null;
+  // }
+
 }

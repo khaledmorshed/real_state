@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utills/global/global.dart';
+import '../../utills/sdp.dart';
 
 class CustomTextFormField extends StatelessWidget {
   IconData? suffixIcon;
@@ -67,14 +68,15 @@ class CustomTextFormField extends StatelessWidget {
     //print("padding...................$isPassword+fonsize........$fontSize.....+obSecureConfirmPasswordValue.............${obSecureValue.value}");
     return Container(
       padding: /*padding*/ EdgeInsets.all(0),
-      height: height == 0 ? null : height,
+      height: height == 0 ? null : SDP.sdp(height!),
+      //width: 300,
       child: Center(
         child: ValueListenableBuilder(
             valueListenable: obSecureValue,
             builder: (context, value, _) {
               return TextFormField(
                 readOnly: isReadOnly!,
-                onTap: onSubmit != null ? () => onChanged!() : null,
+                onTap: onSubmit != null ? () => onSubmit!() : null,
                 validator: validation != null
                     ? (String? txt) => validation!(txt)
                     : null,
@@ -86,7 +88,7 @@ class CustomTextFormField extends StatelessWidget {
                     onChanged != null ? (String txt) => onChanged!(txt) : null,
                 style: TextStyle(
                   color: textColor,
-                  fontSize: fontSize,
+                  fontSize: SDP.sdp(fontSize!),
                   fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
@@ -102,7 +104,7 @@ class CustomTextFormField extends StatelessWidget {
                           borderSide: BorderSide.none,
 
                         ),
-                  //contentPadding: contentPadding == null ? null : EdgeInsets.symmetric(horizontal: contentPadding!, vertical: contentPadding!),
+                 // contentPadding: contentPadding == null ? null : EdgeInsets.symmetric(horizontal: contentPadding!, vertical: contentPadding!),
                   suffixIcon: suffixIconString == null
                       ? null
                       : Padding(
