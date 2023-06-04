@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +17,8 @@ class CustomButton extends StatelessWidget {
         this.onTap,
         this.filterText,
         this.padding = 8,
-        this.bgColor = Colors.white,
-        this.isSelected,
+        this.bgColor = Colors.grey,
+        this.isSelected = false,
         Key? key
 
        }) : super(key: key);
@@ -29,7 +30,8 @@ class CustomButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: bgColor
+          //color: bgColor
+          color: isSelected! ? Colors.blue : bgColor,
         ),
           child: Padding(
             padding: padding == null ? EdgeInsets.all(0) : EdgeInsets.all(padding!),
@@ -38,12 +40,13 @@ class CustomButton extends StatelessWidget {
       ),
     );
   }
+
 }
 
 
 
 
-//
+
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 //
@@ -93,3 +96,53 @@ class CustomButton extends StatelessWidget {
 //     );
 //   }
 // }
+
+
+// import 'package:flutter/material.dart';
+//
+// class CustomButton extends StatefulWidget {
+//    String? title;
+//    Function? onTap;
+//    double? padding;
+//    Color? bgColor;
+//
+//    CustomButton({
+//     Key? key,
+//     this.title,
+//     this.onTap,
+//     this.padding = 8,
+//     this.bgColor = Colors.white,
+//   }) : super(key: key);
+//
+//   @override
+//   _CustomButtonState createState() => _CustomButtonState();
+// }
+//
+// class _CustomButtonState extends State<CustomButton> {
+//   bool isSelected = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: () {
+//         setState(() {
+//           isSelected = !isSelected;
+//         });
+//        // widget.onTap!();
+//       },
+//       child: Container(
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(5),
+//           color: isSelected ? Colors.blue : widget.bgColor,
+//         ),
+//         child: Padding(
+//           padding: EdgeInsets.all(widget.padding!),
+//           child: Text(widget.title!),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+

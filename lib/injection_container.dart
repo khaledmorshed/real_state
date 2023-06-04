@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'data/data_source/remote/dio/dio_service.dart';
 import 'data/data_source/remote/dio/logging_interceptor.dart';
 import 'data/repositories/auth/auth_repo.dart';
+import 'providers/a_specific_widget_provider.dart';
+import 'providers/home_screen_provider.dart';
 import 'providers/sign_in_provider.dart';
 
 
@@ -41,6 +43,8 @@ Future<void> init() async {
   /// Provider
   sl.registerFactory<SignUpProvider>(() => SignUpProvider(dioService: sl(), auth: sl()));
   sl.registerFactory<SignInProvider>(() => SignInProvider(dioService: sl(), auth: sl()));
+  sl.registerFactory<ASpecificWidgetProvider>(() => ASpecificWidgetProvider());
+  sl.registerFactory<HomeScreenProvider>(() => HomeScreenProvider());
 
 
 

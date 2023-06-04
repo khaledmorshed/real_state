@@ -78,6 +78,7 @@ flutter:
     - assets/vectors/sign up screen/
     - assets/vectors/update_password/
     - assets/vectors/home_screen/
+    - assets/vectors/home_screen/category/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
