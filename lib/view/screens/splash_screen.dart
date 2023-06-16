@@ -4,6 +4,7 @@ import 'package:real_state/utills/global/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utills/conts/color_manager.dart';
 import 'auth_screens/sign_up_screen.dart';
+import 'filter_screen.dart';
 import 'home_screen.dart';
 
 
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () async {
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => FilterScreen()));
 
       // if(_access != null){
       //   Navigator.pushReplacement(

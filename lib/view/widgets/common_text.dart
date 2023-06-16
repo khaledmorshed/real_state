@@ -35,7 +35,7 @@ class CommonText extends StatelessWidget {
     SDP.init(context);
     // TextStyle tStyle = Theme.of(context).textTheme.headline1!;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       child: Text(
         title,
         textAlign: textAlignment,

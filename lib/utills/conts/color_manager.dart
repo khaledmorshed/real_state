@@ -10,6 +10,11 @@ class ColorManager {
   static Color otpResend = HexColor.fromHex("#1F53B9");
   static Color hintTextColor = HexColor.fromHex("#A6A6A6");
   static Color buttonColor = HexColor.fromHex("#1F53B9");
+  static Color seeAll = HexColor.fromHex("#1F53B9");
+  static Color dollarColor = HexColor.fromHex("#F7941D");
+  static Color floatingButton = HexColor.fromHex("#1F53B9");
+  static Color inactiveSliding = Color.fromRGBO(31, 83, 185, 0.1);
+
 
   //for home screen
   static Color homeBg = HexColor.fromHex("#F4F7FD");

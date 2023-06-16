@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
   Function? onTap;
   String? filterText;
   double? padding;
-  Color? bgColor;
+  Color? buttonColor;
 
     CustomButton(
        this.title,
@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget {
         this.onTap,
         this.filterText,
         this.padding = 8,
-        this.bgColor = Colors.grey,
+        this.buttonColor = Colors.white,
         this.isSelected = false,
         Key? key
 
@@ -31,7 +31,7 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           //color: bgColor
-          color: isSelected! ? Colors.blue : bgColor,
+          color: isSelected! ? Colors.blue : buttonColor,
         ),
           child: Padding(
             padding: padding == null ? EdgeInsets.all(0) : EdgeInsets.all(padding!),

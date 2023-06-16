@@ -10,4 +10,14 @@ int get selectedButtonIndex => _selectedButtonIndex;
     notifyListeners();
   }
 
+  double _lowerValue = 5000, _upperValue = 20000;
+  double get lowerValue => _lowerValue;
+  double get upperValue => _upperValue;
+
+  void setLowerAndUpperValue(double low, up){
+    _lowerValue = low;
+    _upperValue = up;
+    notifyListeners();
+  }
+
 }
