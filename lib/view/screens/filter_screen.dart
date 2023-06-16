@@ -108,6 +108,7 @@ class _FilterScreenState extends State<FilterScreen> {
               _areaMethod(),
               szH15(),
               Image.asset("assets/vectors/filter_screen/1.png"),
+              szH15(),
               Consumer<ASpecificWidgetProvider>(
                   builder: (BuildContext context, _provider, _){
                     return _priceRangeSlider(_provider);
