@@ -6,6 +6,7 @@ import 'package:real_state/providers/home_screen_provider.dart';
 import 'package:real_state/utills/global/size_box.dart';
 import 'package:real_state/utills/global/text.dart';
 
+import '../../utills/conts/color_manager.dart';
 import '../../utills/sdp.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -21,6 +22,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     SDP.init(context);
     return Scaffold(
+      backgroundColor: ColorManager.homeBg,
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: ColorManager.homeBg,
+
+        title: txt18("Explore Your Dream Place"),
+      ),
+
       body: SafeArea(
         child: Consumer<HomeScreenProvider>(
           builder: (context, _provider, _) {
@@ -29,9 +40,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  szH30(),
-                  txt18("Explore Your Dream Place"),
-                  szH15(),
                   Expanded(
                     child: Container(
                       //color: Colors.green,

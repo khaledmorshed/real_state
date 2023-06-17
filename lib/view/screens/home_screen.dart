@@ -6,6 +6,8 @@ import 'package:real_state/utills/global/global.dart';
 import 'package:real_state/utills/global/size_box.dart';
 import 'package:real_state/utills/global/text.dart';
 import 'package:real_state/view/screens/auth_screens/sign_in_screen.dart';
+import 'package:real_state/view/screens/category_screen.dart';
+import 'package:real_state/view/screens/filter_screen.dart';
 import 'package:real_state/view/widgets/custon_text_form_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -159,7 +161,13 @@ class _HomeScreenState extends State<HomeScreen> {
           szW20(),
           Expanded(
             flex: 1,
-              child: Image.asset("assets/vectors/home_screen/filter.png"),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => FilterScreen()));
+                },
+                  child: Image.asset("assets/vectors/home_screen/filter.png"),
+              ),
           ),
 
         ],
@@ -222,7 +230,10 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => CategoryScreen()));
+                    },
                     child: Row(
                       children: [
                         txt14("See All", textColor: ColorManager.seeAll),
@@ -249,44 +260,47 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(right: 10),
                     child: Stack(
                       children: [
-                        if(index == 3)ClipRRect(
-                          //borderRadius: BorderRadius.circular(10),
+                        if(index == 3)GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => CategoryScreen()));
+                          },
                           child: Container(
                             height: SDP.sdp(148),
                             width: SDP.sdp(160),
                               decoration: BoxDecoration(
-                                // boxShadow: [
-                                //   BoxShadow(
-                                //     color: Colors.red,
-                                //     //color: Colors.black.withOpacity(0.6), // Shadow color
-                                //     spreadRadius: 100,
-                                //     blurRadius: 10,
-                                //     blurStyle: BlurStyle.normal
-                                //   ),
-                                // ],
                                 borderRadius: BorderRadius.circular(10),
                                 //color: Colors.green,
                               ),
-                              child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.fill,),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.fill,)),
                             ),
                         )
                         else Container(
                           height: SDP.sdp(148),
                           width: SDP.sdp(160),
-
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                            // color: Colors.red
                           ),
-                          child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,)),
                         ),
                        // Text("data"),
                         if(index == 3) Positioned.fill(
                           // bottom: 10,
                           //top: 50,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: txt14("See All", textColor: Colors.white),
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                  context, MaterialPageRoute(builder: (context) => CategoryScreen()));
+                            },
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: txt14("See All", textColor: Colors.white)
+                            ),
                           ),
                         )
                         else Positioned.fill(

@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () async {
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => CategoryScreen()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
 
       // if(_access != null){
       //   Navigator.pushReplacement(
