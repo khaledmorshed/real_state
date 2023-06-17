@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:real_state/utills/global/global.dart';
+import 'package:real_state/view/screens/property_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utills/conts/color_manager.dart';
 import 'auth_screens/sign_up_screen.dart';

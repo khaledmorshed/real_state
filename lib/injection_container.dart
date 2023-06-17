@@ -1,6 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:real_state/providers/property_provider.dart';
 import 'package:real_state/providers/sign_up_provider.dart';
 import 'package:real_state/utills/conts/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,6 +46,7 @@ Future<void> init() async {
   sl.registerFactory<SignInProvider>(() => SignInProvider(dioService: sl(), auth: sl()));
   sl.registerFactory<ASpecificWidgetProvider>(() => ASpecificWidgetProvider());
   sl.registerFactory<HomeScreenProvider>(() => HomeScreenProvider());
+  sl.registerFactory<PropertyProvider>(() => PropertyProvider());
 
 
 

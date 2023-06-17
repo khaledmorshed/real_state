@@ -85,6 +85,7 @@ flutter:
     - assets/vectors/home_screen/category/
     - assets/vectors/home_screen/client_slider/
     - assets/vectors/filter_screen/
+    - assets/vectors/property_screen/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

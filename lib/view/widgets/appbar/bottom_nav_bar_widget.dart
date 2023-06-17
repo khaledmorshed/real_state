@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:real_state/providers/a_specific_widget_provider.dart';
+import 'package:real_state/view/screens/home_screen.dart';
+import 'package:real_state/view/screens/property_screen.dart';
 
 import '../../../utills/global/size_box.dart';
 import '../../../utills/global/text.dart';
@@ -8,62 +12,100 @@ class BottomNavBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
+    return Consumer<ASpecificWidgetProvider>(
+      builder: (context, _provider, _) {
+        return BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          notchMargin: 4,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              IconButton(
-                  onPressed: (){},
-                  icon: Image.asset("assets/vectors/home_screen/home_icon.png"),),
-              txt10("Home")
-            ],
-          ),
-          szW20(),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                  onPressed: (){},
-                  icon: Image.asset("assets/vectors/home_screen/property.png"),),
-              txt10("Property")
-            ],
-          ),
-          szW20(),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                onPressed: (){},
-                icon: Icon(null),
+              GestureDetector(
+                onTap: (){
+                  _provider.setButtonSelectionValueForNavBar("home");
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      color: Colors.red,
+                        onPressed:null,
+                        icon: Image.asset("assets/vectors/home_screen/home_icon.png", color: _provider.selectedHomeForBottomNavBar == true ? Colors.blue : null ,),),
+                    txt10("Home", textColor: _provider.selectedHomeForBottomNavBar == true ? Colors.blue : Colors.black ,)
+                  ],
+                ),
               ),
-              txt10("Add Property")
+              szW20(),
+              GestureDetector(
+                onTap: (){
+                  _provider.setButtonSelectionValueForNavBar("property");
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => PropertyScreen()));
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                     // color: Colors.red,
+                        //style: ButtonStyle(c),
+                        onPressed: null,
+                        icon: Image.asset("assets/vectors/home_screen/property.png",color: _provider.selectedPropertyForBottomNavBar == true ? Colors.blue : null ,),),
+                    txt10("Property", textColor: _provider.selectedPropertyForBottomNavBar == true ? Colors.blue : Colors.black ,)
+                  ],
+                ),
+              ),
+              szW20(),
+              GestureDetector(
+                onTap: (){
+                  _provider.setButtonSelectionValueForNavBar("add_property");
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: null,
+                      icon: Icon(null),
+                    ),
+                    txt10("Add Property", textColor: _provider.selectedAddPropertyForBottomNavBar == true ? Colors.blue : Colors.black ,)
+                  ],
+                ),
+              ),
+              szW20(),
+              GestureDetector(
+                onTap: (){
+                  _provider.setButtonSelectionValueForNavBar("favorite");
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: null,
+                        icon: Image.asset("assets/vectors/home_screen/favorite_non_color.png", color: _provider.selectedFavoriteForBottomNavBar == true ? Colors.blue : null),),
+                    txt10("Favorite", textColor: _provider.selectedFavoriteForBottomNavBar == true ? Colors.blue : Colors.black ,)
+                  ],
+                ),
+              ),
+              szW20(),
+              GestureDetector(
+                onTap: (){
+                  _provider.setButtonSelectionValueForNavBar("settings");
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: null,
+                        icon: Image.asset("assets/vectors/home_screen/settings.png", color: _provider.selectedSettingsForBottomNavBar == true ? Colors.blue : null),),
+                    txt10("Settings", textColor: _provider.selectedSettingsForBottomNavBar == true ? Colors.blue : Colors.black ,)
+                  ],
+                ),
+              ),
             ],
           ),
-          szW20(),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                  onPressed: (){},
-                  icon: Image.asset("assets/vectors/home_screen/favorite_non_color.png"),),
-              txt10("Favorite")
-            ],
-          ),
-          szW20(),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                  onPressed: (){},
-                  icon: Image.asset("assets/vectors/home_screen/settings.png"),),
-              txt10("Settings")
-            ],
-          ),
-        ],
-      ),
+        );
+      }
     );
   }
 }

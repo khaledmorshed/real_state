@@ -42,13 +42,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 children: [
                   Expanded(
                     child: Container(
+                     // height: 400,
                       //color: Colors.green,
                       child:
                       GridView.custom(
                         dragStartBehavior: DragStartBehavior.start,
+
+
                         gridDelegate: SliverStairedGridDelegate(
-                          //crossAxisSpacing: 10,
-                          //mainAxisSpacing: 10,
+                          // crossAxisSpacing: 10,
+                          // mainAxisSpacing: 10,
                           startCrossAxisDirectionReversed: true,
                           pattern: [
                             StairedGridTile(1, 1),
@@ -64,12 +67,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               padding: const EdgeInsets.only(left: 15.0, top: 15),
                               child: Container(
                                // color: Colors.red,
+                                //color: Colors.green,
+                               // height: 200,
                                 child: Stack(
                                   fit: StackFit.expand,
                                   children: [
                                     Container(
+                                     // height: 200,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
+
                                       ),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
@@ -82,6 +89,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
                                     Positioned.fill(
                                       top: SDP.sdp(300),
+                                     // top: SDP.sdp(100),
                                       bottom:  15,
                                         child: Column(
                                           children: [

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:real_state/providers/a_specific_widget_provider.dart';
 import 'package:real_state/utills/global/global.dart';
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   TextEditingController _searchController = TextEditingController();
 
-  var _buttonList = ["All", "House", "Apartment", "Flat", "Hotel", "Apartment2", "Flat2",];
+  var _buttonList = ["All", "House", "Apartment", "Flat", "Hotel",];
 
 
   loadShPref()async{
@@ -43,10 +44,34 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() async{
     // TODO: implement didChangeDependencies
+    print("did...........................10");
     await loadShPref();
     super.didChangeDependencies();
   }
-  // int _selectedButtonIndex = -1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("init...........................10");
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      print("init...........................10");
+     Provider.of<ASpecificWidgetProvider>(context, listen: false).setButtonSelectionValueForNavBar("home");
+    });
+    super.initState();
+  }
+
+  @override
+  void didPopNext() {
+    print("didpop......................");
+    // User exited the current screen
+    // Perform any necessary actions here
+  }
+
+  @override
+  void dispose() {
+    print('Screen exited!.....................');
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,76 +84,77 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     SDP.init(context);
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: ColorManager.homeBg,
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: ColorManager.homeBg,
-        appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: ColorManager.homeBg,
 
-         // title: Text("fdfdf"),
+       // title: Text("fdfdf"),
 
-          title: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GestureDetector(
-                onTap: (){},
-                child: SizedBox(
-                  child: Image.asset("assets/vectors/home_screen/location.png"),
-                ),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            GestureDetector(
+              onTap: (){},
+              child: SizedBox(
+                child: Image.asset("assets/vectors/home_screen/location.png"),
               ),
-              //szW5(),
-              txt12("place name", fontWeight: FontWeight.w400)
+            ),
+            //szW5(),
+            txt12("place name", fontWeight: FontWeight.w400)
 
+          ],
+        ),
+      ),
+      drawer: LeftDrawer(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 16, right: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _introductionText(),
+              szH20(),
+              _searchAndFilter(),
+              szH20(),
+              Consumer<ASpecificWidgetProvider>(
+                  builder: (BuildContext context, provider, _){
+                return _allCategoriesButton(provider);
+              }),
+              szH30(),
+              Consumer<HomeScreenProvider>(
+                  builder: (BuildContext context, _provider, _){
+                  return  Column(
+                    children: [
+                      _allCategories(_provider),
+                      szH50(),
+                      _latestProperties(_provider),
+                      szH50(),
+                      _recommendedFor(_provider),
+                      szH50(),
+                      _clientMethod(_provider),
+                      szH50(),
+                      _realEstateBlog(),
+                      szH50(),
+                    ],
+                  );
+              },),
+              //_allCaterogry(),
             ],
           ),
         ),
-        drawer: LeftDrawer(),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10, left: 16, right: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _introductionText(),
-                szH20(),
-                _searchAndFilter(),
-                szH20(),
-                Consumer<ASpecificWidgetProvider>(
-                    builder: (BuildContext context, provider, _){
-                  return _allCategoriesButton(provider);
-                }),
-                szH30(),
-                Consumer<HomeScreenProvider>(
-                    builder: (BuildContext context, _provider, _){
-                    return  Column(
-                      children: [
-                        _allCategories(_provider),
-                        szH50(),
-                        _latestProperties(_provider),
-                        szH50(),
-                        _recommendedFor(_provider),
-                        szH50(),
-                        _clientMethod(_provider),
-                      ],
-                    );
-                },),
-                //_allCaterogry(),
-              ],
-            ),
-          ),
-        ),
-        bottomNavigationBar: BottomNavBarWidget(),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: ColorManager.floatingButton,
-          onPressed: (){},
-          child: Image.asset("assets/vectors/home_screen/home_2.png"),
-
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
+      bottomNavigationBar: BottomNavBarWidget(),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorManager.floatingButton,
+        onPressed: (){},
+        child: Image.asset("assets/vectors/home_screen/home_2.png"),
+
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -388,7 +414,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.green,
                                 ),
-                                child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                                ),
                               ),
                             )
                             else Container(
@@ -397,7 +426,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                              ),
                             ),
                             // Text("data"),
                             if(index == 3) Positioned.fill(
@@ -528,7 +560,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           szH15(),
           Container(
-            width: SDP.sdp(303),
+            width: double.infinity,
             height: SDP.sdp(100),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -545,7 +577,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                        ),
                       ),
 
                       szW20(),
@@ -677,6 +712,87 @@ class _HomeScreenState extends State<HomeScreen> {
               dotHeight: 10
           ),
         )
+      ],
+    );
+  }
+
+  _realEstateBlog(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            txt18("Latest Properties"),
+            GestureDetector(
+              onTap: (){},
+              child: Row(
+                children: [
+                  txt14("See All", textColor: ColorManager.seeAll),
+                  Image.asset("assets/vectors/home_screen/arrow_right.png"),
+                ],
+              ),
+            ),
+          ],
+        ),
+        szH15(),
+        Container(
+          height: SDP.sdp(245),
+          width: double.infinity,
+          //color: Colors.red,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 4,
+            itemBuilder: (BuildContext context, index){
+              return Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: SDP.sdp(123),
+                      width: SDP.sdp(230),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        //color: Colors.green,
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,)
+                      ),
+                    ),
+                    //szH5(),
+                    Container(
+                      height: SDP.sdp(122),
+                      width: SDP.sdp(230),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          txt14("Why Live in New York"),
+                          szH5(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              txt12("Date"),
+                              Row(
+                                children: [
+                                  Image.asset("assets/vectors/home_screen/Clock.png",),
+                                  szW5(),
+                                  txt12("Hour")
+                                ],
+                              ),
+                            ],
+                          ),
+                          szH10(),
+                          Text("Lorem ipsum dolor sit amet, conse ctetur adipiscing. Interdum amet, felis", maxLines: 3, style: TextStyle(fontSize: 10),)
+                        ],
+                      ),
+                    ),
+
+                  ],
+                ),
+              );
+            },),
+        ),
       ],
     );
   }

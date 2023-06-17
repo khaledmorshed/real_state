@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:real_state/providers/home_screen_provider.dart';
+import 'package:real_state/providers/property_provider.dart';
 import 'package:real_state/providers/sign_up_provider.dart';
 import 'package:real_state/view/screens/auth_screens/reset_password_screen.dart';
 import 'package:real_state/view/screens/auth_screens/sign_in_screen.dart';
@@ -28,6 +29,7 @@ void main() async{
           ChangeNotifierProvider(create: (context) => injection.sl<SignInProvider>()),
           ChangeNotifierProvider(create: (context) => injection.sl<ASpecificWidgetProvider>()),
           ChangeNotifierProvider(create: (context) => injection.sl<HomeScreenProvider>()),
+          ChangeNotifierProvider(create: (context) => injection.sl<PropertyProvider>()),
         ],
         child: const MyApp(),
     ),
