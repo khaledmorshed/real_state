@@ -659,12 +659,12 @@ class _HomeScreenState extends State<HomeScreen> {
               viewportFraction: 0.8,
               initialPage: 0,
               enableInfiniteScroll: false,
-             // reverse: false,
+              reverse: false,
               //autoPlay: true,
               autoPlayInterval: const Duration(seconds: 2),
               autoPlayAnimationDuration:
               const Duration(milliseconds: 500),
-              //autoPlayCurve: Curves.decelerate,
+              autoPlayCurve: Curves.decelerate,
               //enlargeCenterPage: true,
               scrollDirection: Axis.horizontal,
               onPageChanged: (index, reason){

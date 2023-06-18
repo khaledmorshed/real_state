@@ -22,9 +22,9 @@ class BottomNavBarWidget extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: (){
-                  _provider.setButtonSelectionValueForNavBar("home");
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                  _provider.setButtonSelectionValueForNavBar("home");
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -40,9 +40,9 @@ class BottomNavBarWidget extends StatelessWidget {
               szW20(),
               GestureDetector(
                 onTap: (){
-                  _provider.setButtonSelectionValueForNavBar("property");
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => PropertyScreen()));
+                  _provider.setButtonSelectionValueForNavBar("property");
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
