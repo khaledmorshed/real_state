@@ -46,6 +46,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: ColorManager.homeBg,
+        iconTheme: IconThemeData(color: Colors.black),
         title: txt18("Property", fontWeight: FontWeight.w500),
       ),
       drawer: LeftDrawer(),

@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:real_state/providers/home_screen_provider.dart';
 import 'package:real_state/providers/property_provider.dart';
 import 'package:real_state/providers/sign_up_provider.dart';
+import 'package:real_state/view/screens/TestScreen.dart';
 import 'package:real_state/view/screens/auth_screens/reset_password_screen.dart';
 import 'package:real_state/view/screens/auth_screens/sign_in_screen.dart';
+import 'package:real_state/view/screens/fovorite_list_screen.dart';
 import 'package:real_state/view/screens/home_screen.dart';
 import 'package:real_state/view/screens/splash_screen.dart';
 import 'package:real_state/view/screens/auth_screens/update_password_screen.dart';
@@ -56,6 +58,8 @@ class MyApp extends StatelessWidget {
         SignInScreen.route: (context)=>SignInScreen(),
         ResetPasswordScreen.route: (context)=> ResetPasswordScreen(),
         UpdatePasswordScreen.route: (context)=> UpdatePasswordScreen(),
+        FavoriteListScreen.route: (context)=> FavoriteListScreen(),
+        TestScreen.route: (context)=> TestScreen(),
       },
     );
   }

@@ -47,17 +47,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       child:
                       GridView.custom(
                         dragStartBehavior: DragStartBehavior.start,
-
-
                         gridDelegate: SliverStairedGridDelegate(
                           // crossAxisSpacing: 10,
                           // mainAxisSpacing: 10,
                           startCrossAxisDirectionReversed: true,
+                          // ToDO: this for testing
                           pattern: [
                             StairedGridTile(1, 1),
                             StairedGridTile(0.5, 0.5),
                             StairedGridTile(0.5, 0.5),
-
                           ],
                         ),
 

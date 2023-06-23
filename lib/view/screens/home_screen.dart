@@ -359,7 +359,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       height: SDP.sdp(265),
       width: double.infinity,
-      //color: Colors.yellow,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -383,152 +382,163 @@ class _HomeScreenState extends State<HomeScreen> {
             height: SDP.sdp(220),
            // width: SDP.sdp(303),
             width: double.infinity,
-            //color: Colors.red,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 4,
               itemBuilder: (BuildContext context, index){
                 return Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: Column(
-                    children: [
-                      //szW10(),
-                     // txt16("title"),
-                      Stack(
-                          children: [
-                            if(index == 3)ClipRRect(
-                              //borderRadius: BorderRadius.circular(10),
-                              child: Container(
-                                height: SDP.sdp(205),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        //szW10(),
+                       // txt16("title"),
+                        Stack(
+                            children: [
+                              if(index == 3)ClipRRect(
+                                //borderRadius: BorderRadius.circular(10),
+                                child: Container(
+                                  height: SDP.sdp(205),
+                                  width: SDP.sdp(303),
+                                  decoration: BoxDecoration(
+                                    // boxShadow: [
+                                    //   BoxShadow(
+                                    //     color: Colors.red,
+                                    //     //color: Colors.black.withOpacity(0.6), // Shadow color
+                                    //     spreadRadius: 100,
+                                    //     blurRadius: 10,
+                                    //     blurStyle: BlurStyle.normal
+                                    //   ),
+                                    // ],
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.green,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      topLeft: Radius.circular(10),
+                                    ),
+                                      child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
+                                  ),
+                                ),
+                              )
+                              else Container(
+                                height: SDP.sdp(180),
                                 width: SDP.sdp(303),
                                 decoration: BoxDecoration(
-                                  // boxShadow: [
-                                  //   BoxShadow(
-                                  //     color: Colors.red,
-                                  //     //color: Colors.black.withOpacity(0.6), // Shadow color
-                                  //     spreadRadius: 100,
-                                  //     blurRadius: 10,
-                                  //     blurStyle: BlurStyle.normal
-                                  //   ),
-                                  // ],
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Colors.green,
                                 ),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10),
+                                  ),
                                     child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
                                 ),
                               ),
-                            )
-                            else Container(
-                              height: SDP.sdp(180),
-                              width: SDP.sdp(303),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset("assets/vectors/home_screen/category/${index}.png", fit: BoxFit.cover,),
-                              ),
-                            ),
-                            // Text("data"),
-                            if(index == 3) Positioned.fill(
-                              // bottom: 10,
-                              //top: 50,
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: txt14("See All", textColor: Colors.white),
-                              ),
-                            )
-                            else Positioned.fill(
-                            //  bottom: SDP.sdp(10),
-                            //  top: SDP.sdp(100),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Row(
-                                      //crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding:  EdgeInsets.only(top: 15, left: 20),
-                                          child: txt10("Sale", textColor: Colors.white),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 15, right: 20),
-                                          child: Image.asset("assets/vectors/home_screen/favorite_icon.png"),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-
-                                  Spacer(),
-
-                                  Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              // Text("data"),
+                              if(index == 3) Positioned.fill(
+                                // bottom: 10,
+                                //top: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: txt14("See All", textColor: Colors.white),
+                                ),
+                              )
+                              else Positioned.fill(
+                              //  bottom: SDP.sdp(10),
+                              //  top: SDP.sdp(100),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Row(
+                                        //crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-
-                                          txt10("Villa On Washington Ave", textColor: Colors.white),
-
-                                          Row(
-                                            children: [
-                                              Image.asset("assets/vectors/home_screen/location.png", color: Colors.white,),
-                                              txt10("adresss", textColor: Colors.white)
-                                            ],
+                                          Padding(
+                                            padding:  EdgeInsets.only(top: 15, left: 20),
+                                            child: txt10("Sale", textColor: Colors.white),
                                           ),
-
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 15, right: 20),
+                                            child: Image.asset("assets/vectors/home_screen/favorite_icon.png"),
+                                          )
                                         ],
                                       ),
                                     ),
-                                  ),
+
+                                    Spacer(),
+
+                                    Align(
+                                      alignment: Alignment.bottomLeft,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 15),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+
+                                            txt10("Villa On Washington Ave", textColor: Colors.white),
+
+                                            Row(
+                                              children: [
+                                                Image.asset("assets/vectors/home_screen/location.png", color: Colors.white,),
+                                                txt10("adresss", textColor: Colors.white)
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+
+                            ]
+                        ),
+
+                        szH15(),
+
+                        if(index != 3)Container(
+                          //height: 50,
+                          width: SDP.sdp(303),
+                          //color: Colors.green,
+                          child: Row(
+                            children: [
+                              Image.asset("assets/vectors/home_screen/Beds_Icon.png"),
+                              szW5(),
+                              txt12("5"),
+                              szW10(),
+                              Image.asset("assets/vectors/home_screen/Line 2.png"),
+                              szW10(),
+                              Image.asset("assets/vectors/home_screen/Bath icon.png"),
+                              szW5(),
+                              txt12("3"),
+                              szW10(),
+                              Image.asset("assets/vectors/home_screen/Ft icon.png"),
+                              szW5(),
+                              txt12("1700"),
+                              szW2(),
+                              txt12("ft2"),
+                              szW20(),
+                              Row(
+                                children: [
+                                  txt16("tk1000/", textColor: ColorManager.dollarColor),
+                                  txt16("Day"),
                                 ],
                               ),
-                            )
-
-                          ]
-                      ),
-
-                      szH15(),
-
-                      if(index != 3)Container(
-                        //height: 50,
-                        width: SDP.sdp(303),
-                        //color: Colors.green,
-                        child: Row(
-                          children: [
-                            Image.asset("assets/vectors/home_screen/Beds_Icon.png"),
-                            szW5(),
-                            txt12("5"),
-                            szW10(),
-                            Image.asset("assets/vectors/home_screen/Line 2.png"),
-                            szW10(),
-                            Image.asset("assets/vectors/home_screen/Bath icon.png"),
-                            szW5(),
-                            txt12("3"),
-                            szW10(),
-                            Image.asset("assets/vectors/home_screen/Ft icon.png"),
-                            szW5(),
-                            txt12("1700"),
-                            szW2(),
-                            txt12("ft2"),
-                            szW20(),
-                            Row(
-                              children: [
-                                txt16("tk1000/", textColor: ColorManager.dollarColor),
-                                txt16("Day"),
-                              ],
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },),
@@ -651,19 +661,16 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           height: MediaQuery.of(context).size.height * .35,
          // width: MediaQuery.of(context).size.width,
-          //color: Colors.red,
+          // color: Colors.red,
           child: CarouselSlider(
             options: CarouselOptions(
               height: MediaQuery.of(context).size.height * .35,
               aspectRatio: 16 / 9,
-              viewportFraction: 0.8,
+              viewportFraction: 1.05,
               initialPage: 0,
               enableInfiniteScroll: false,
               reverse: false,
               //autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 2),
-              autoPlayAnimationDuration:
-              const Duration(milliseconds: 500),
               autoPlayCurve: Curves.decelerate,
               //enlargeCenterPage: true,
               scrollDirection: Axis.horizontal,
@@ -674,9 +681,10 @@ class _HomeScreenState extends State<HomeScreen> {
             items: _provider.clientSlider.map((index) {
               return Builder(builder: (BuildContext context) {
                 return Container(
-                  //color: Colors.green,
-                  margin: EdgeInsets.only(left: 50),
+                  color: Colors.white,
+                  margin: EdgeInsets.only(left: 10),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                        // color:Colors.yellow,
@@ -723,7 +731,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt18("Latest Properties"),
+            txt18("Our Real Estate Blog"),
             GestureDetector(
               onTap: (){},
               child: Row(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:real_state/utills/global/global.dart';
+import 'package:real_state/view/screens/fovorite_list_screen.dart';
 import 'package:real_state/view/screens/property_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utills/conts/color_manager.dart';
@@ -26,8 +27,10 @@ class _SplashScreenState extends State<SplashScreen> {
   startTimer() {
     Timer(const Duration(seconds: 2), () async {
 
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
+
+      Navigator.pushNamed(context, FavoriteListScreen.route);
 
       // if(_access != null){
       //   Navigator.pushReplacement(
