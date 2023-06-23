@@ -15,6 +15,7 @@ import 'injection_container.dart' as injection;
 import 'providers/a_specific_widget_provider.dart';
 import 'providers/sign_in_provider.dart';
 import 'view/screens/auth_screens/sign_up_screen.dart';
+import 'view/screens/details_screen.dart';
 
 
 
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         ResetPasswordScreen.route: (context)=> ResetPasswordScreen(),
         UpdatePasswordScreen.route: (context)=> UpdatePasswordScreen(),
         FavoriteListScreen.route: (context)=> FavoriteListScreen(),
+        DetailsScreen.route: (context)=> DetailsScreen(),
         TestScreen.route: (context)=> TestScreen(),
       },
     );

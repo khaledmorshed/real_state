@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:real_state/utills/global/global.dart';
+import 'package:real_state/view/screens/details_screen.dart';
 import 'package:real_state/view/screens/fovorite_list_screen.dart';
 import 'package:real_state/view/screens/property_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // Navigator.pushReplacement(
       //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
 
-      Navigator.pushNamed(context, FavoriteListScreen.route);
+      Navigator.pushNamed(context, DetailsScreen.route);
 
       // if(_access != null){
       //   Navigator.pushReplacement(
