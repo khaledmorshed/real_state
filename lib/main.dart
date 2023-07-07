@@ -7,6 +7,7 @@ import 'package:real_state/providers/sign_up_provider.dart';
 import 'package:real_state/view/screens/TestScreen.dart';
 import 'package:real_state/view/screens/auth_screens/reset_password_screen.dart';
 import 'package:real_state/view/screens/auth_screens/sign_in_screen.dart';
+import 'package:real_state/view/screens/detaits_screen.dart';
 import 'package:real_state/view/screens/fovorite_list_screen.dart';
 import 'package:real_state/view/screens/home_screen.dart';
 import 'package:real_state/view/screens/splash_screen.dart';
@@ -15,7 +16,7 @@ import 'injection_container.dart' as injection;
 import 'providers/a_specific_widget_provider.dart';
 import 'providers/sign_in_provider.dart';
 import 'view/screens/auth_screens/sign_up_screen.dart';
-import 'view/screens/details_screen.dart';
+import 'view/screens/details_screen2.dart';
 
 
 

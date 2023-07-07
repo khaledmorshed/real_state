@@ -9,8 +9,8 @@ class SDP{
   static late double ratio;
   static late BuildContext context;
 
-  static void init(BuildContext c){
-    context = c;
+  static void init(BuildContext context){
+    context = context;
     width = MediaQuery.of(context).size.shortestSide;
     // print(width);
     ratio = MediaQuery.of(context).size.aspectRatio;

@@ -658,68 +658,68 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         szH15(),
-        Container(
-          height: MediaQuery.of(context).size.height * .35,
-         // width: MediaQuery.of(context).size.width,
-          // color: Colors.red,
-          child: CarouselSlider(
-            options: CarouselOptions(
-              height: MediaQuery.of(context).size.height * .35,
-              aspectRatio: 16 / 9,
-              viewportFraction: 1.05,
-              initialPage: 0,
-              enableInfiniteScroll: false,
-              reverse: false,
-              //autoPlay: true,
-              autoPlayCurve: Curves.decelerate,
-              //enlargeCenterPage: true,
-              scrollDirection: Axis.horizontal,
-              onPageChanged: (index, reason){
-                _provider.setActiveIndexValue(index);
-              }
-            ),
-            items: _provider.clientSlider.map((index) {
-              return Builder(builder: (BuildContext context) {
-                return Container(
-                  color: Colors.white,
-                  margin: EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                       // color:Colors.yellow,
-                        child: CircleAvatar(
-                          radius: SDP.sdp(80),
-                          //child: Image.asset(index,),
-                          backgroundImage: Image.asset(index,).image
-                          //backgroundImage: NetworkImage(index),
-                        )
-                      ),
-                      szH5(),
-                      txt18("name"),
-                      szH5(),
-                      txt12("location"),
-                      szH10(),
-                      //txt10("Real estate ls."),
-                      Text("Real estate is a smart investment that offers stable income, appreciation, security, and endless opportunities to achieve financial goals.", maxLines: 5, style: TextStyle(fontSize: 10),)
+          Container(
+            height: MediaQuery.of(context).size.height * .35,
+           // width: MediaQuery.of(context).size.width,
+            // color: Colors.red,
+            child: CarouselSlider(
+              options: CarouselOptions(
+                height: MediaQuery.of(context).size.height * .35,
+                aspectRatio: 16 / 9,
+                viewportFraction: 1.05,
+                initialPage: 0,
+                enableInfiniteScroll: false,
+                reverse: false,
+                //autoPlay: true,
+                autoPlayCurve: Curves.decelerate,
+                //enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
+                onPageChanged: (index, reason){
+                  _provider.setActiveIndexValue(index);
+                }
+              ),
+              items: _provider.clientSlider.map((index) {
+                return Builder(builder: (BuildContext context) {
+                  return Container(
+                    color: Colors.white,
+                    margin: EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                         // color:Colors.yellow,
+                          child: CircleAvatar(
+                            radius: SDP.sdp(80),
+                            //child: Image.asset(index,),
+                            backgroundImage: Image.asset(index,).image
+                            //backgroundImage: NetworkImage(index),
+                          )
+                        ),
+                        szH5(),
+                        txt18("name"),
+                        szH5(),
+                        txt12("location"),
+                        szH10(),
+                        //txt10("Real estate ls."),
+                        Text("Real estate is a smart investment that offers stable income, appreciation, security, and endless opportunities to achieve financial goals.", maxLines: 5, style: TextStyle(fontSize: 10),)
 
-                    ],
-                  ),
-                );
-              });
-            }).toList(),
+                      ],
+                    ),
+                  );
+                });
+              }).toList(),
+            ),
           ),
-        ),
-        szH30(),
-        AnimatedSmoothIndicator(
-          activeIndex: _provider.activeIndex,
-          count: _provider.clientSlider.length,
-          //count: 2,
-          effect: SlideEffect(
-              dotWidth: 10,
-              dotHeight: 10
-          ),
-        )
+          szH30(),
+          AnimatedSmoothIndicator(
+            activeIndex: _provider.activeIndex,
+            count: _provider.clientSlider.length,
+            //count: 2,
+            effect: SlideEffect(
+                dotWidth: 10,
+                dotHeight: 10
+            ),
+          )
       ],
     );
   }

@@ -1,13 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:real_state/utills/global/global.dart';
-import 'package:real_state/view/screens/details_screen.dart';
+import 'package:real_state/view/screens/TestScreen.dart';
+import 'package:real_state/view/screens/details_screen2.dart';
 import 'package:real_state/view/screens/fovorite_list_screen.dart';
 import 'package:real_state/view/screens/property_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utills/conts/color_manager.dart';
 import 'auth_screens/sign_up_screen.dart';
 import 'category_screen.dart';
+import 'detaits_screen.dart';
 import 'filter_screen.dart';
 import 'home_screen.dart';
 
@@ -31,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // Navigator.pushReplacement(
       //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
 
-      Navigator.pushNamed(context, DetailsScreen.route);
+      Navigator.pushNamed(context, TestScreen.route);
 
       // if(_access != null){
       //   Navigator.pushReplacement(
